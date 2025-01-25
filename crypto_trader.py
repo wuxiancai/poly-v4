@@ -87,7 +87,7 @@ class CryptoTrader:
         self.is_trading = False  # 添加交易状态标志
         self.refresh_interval = 600000  # 10分钟 = 600000毫秒
         self.refresh_timer = None  # 用于存储定时器ID
-        self.default_target_price = 0.54
+        self.default_target_price = 0.56
         self._amounts_logged = False
         # 初始化金额属性
         for i in range(1, 6):  # 1到5
@@ -1724,7 +1724,7 @@ class CryptoTrader:
                 no0_target = float(self.no_price_entry.get())
                 
                 # 检查Yes0价格匹配
-                if 0 <= (yes_price - yes0_target ) <= 0.04 and yes0_target > 0:
+                if 0 <= (yes_price - yes0_target ) <= 0.1 and yes0_target > 0:
                     while True:
                         self.logger.info("Yes 0价格匹配,执行自动交易")
                         # 执行现有的交易操作
@@ -1756,15 +1756,15 @@ class CryptoTrader:
                             no1_price_entry.delete(0, tk.END)
                             no1_price_entry.insert(0, str(self.default_target_price))
                             no1_price_entry.configure(fg='red')  # 添加红色设置
-                            # 设置 Yes4和No4价格为0.85
-                            yes4_price_entry = self.yes_frame.grid_slaves(row=10, column=1)[0]
-                            yes4_price_entry.delete(0, tk.END)
-                            yes4_price_entry.insert(0, "0.85")
-                            yes4_price_entry.configure(fg='red')  # 添加红色设置
-                            no4_price_entry = self.no_frame.grid_slaves(row=10, column=1)[0]
-                            no4_price_entry.delete(0, tk.END)
-                            no4_price_entry.insert(0, "0.85")
-                            no4_price_entry.configure(fg='red')  # 添加红色设置
+                            # 设置 Yes6和No6价格为0.85
+                            yes6_price_entry = self.yes_frame.grid_slaves(row=12, column=1)[0]
+                            yes6_price_entry.delete(0, tk.END)
+                            yes6_price_entry.insert(0, "0.85")
+                            yes6_price_entry.configure(fg='red')  # 添加红色设置
+                            no6_price_entry = self.no_frame.grid_slaves(row=12, column=1)[0]
+                            no6_price_entry.delete(0, tk.END)
+                            no6_price_entry.insert(0, "0.85")
+                            no6_price_entry.configure(fg='red')  # 添加红色设置
                             break
                         else:
                             self.logger.warning("交易失败,等待2秒后重试")
@@ -1806,15 +1806,15 @@ class CryptoTrader:
                             yes1_price_entry.delete(0, tk.END)
                             yes1_price_entry.insert(0, str(self.default_target_price))
                             yes1_price_entry.configure(fg='red')  # 添加红色设置
-                            # 设置 Yes4和No4价格为0.85
-                            yes4_price_entry = self.yes_frame.grid_slaves(row=10, column=1)[0]
-                            yes4_price_entry.delete(0, tk.END)
-                            yes4_price_entry.insert(0, "0.85")
-                            yes4_price_entry.configure(fg='red')  # 添加红色设置
-                            no4_price_entry = self.no_frame.grid_slaves(row=10, column=1)[0]
-                            no4_price_entry.delete(0, tk.END)
-                            no4_price_entry.insert(0, "0.85")
-                            no4_price_entry.configure(fg='red')  # 添加红色设置
+                            # 设置 Yes6和No6价格为0.85
+                            yes6_price_entry = self.yes_frame.grid_slaves(row=12, column=1)[0]
+                            yes6_price_entry.delete(0, tk.END)
+                            yes6_price_entry.insert(0, "0.85")
+                            yes6_price_entry.configure(fg='red')  # 添加红色设置
+                            no6_price_entry = self.no_frame.grid_slaves(row=12, column=1)[0]
+                            no6_price_entry.delete(0, tk.END)
+                            no6_price_entry.insert(0, "0.85")
+                            no6_price_entry.configure(fg='red')  # 添加红色设置
                             break
                         else:
                             self.logger.warning("交易失败,等待2秒后重试")
@@ -2653,7 +2653,7 @@ class CryptoTrader:
             yes_match = re.search(r'\b(Yes)\b', text)  # 匹配单词 Yes
             amount_match = re.search(r'\$(\d+\.?\d*)', text)  # 匹配 $数字 格式
             
-            if trade_type == "Bought" and yes_match == "Yes" and amount_match:
+            if trade_type.group(1) == "Bought" and yes_match.group(1) == "Yes":
                 self.trade_type = trade_type.group(1)  # 获取 "Bought"
                 self.buy_yes_value = yes_match.group(1)  # 获取 "Yes"
                 self.buy_yes_amount = float(amount_match.group(1))  # 获取数字部分并转为浮点数
@@ -2681,13 +2681,13 @@ class CryptoTrader:
             )
             text = no_element.text
             # 记录原始文本用于调试
-            self.logger.debug(f"获取到的交易记录文本: {text}")
+            self.logger.debug(f"交易记录: {text}")
 
             trade_type = re.search(r'\b(Bought)\b', text)  # 匹配单词 Bought
             no_match = re.search(r'\b(No)\b', text)  # 匹配单词 No
             amount_match = re.search(r'\$(\d+\.?\d*)', text)  # 匹配 $数字 格式
 
-            if trade_type == "Bought" and no_match == "No" and amount_match:
+            if trade_type.group(1) == "Bought" and no_match.group(1) == "No":
                 self.trade_type = trade_type.group(1)  # 获取 "Bought"
                 self.buy_no_value = no_match.group(1)  # 获取 "No"
                 self.buy_no_amount = float(amount_match.group(1))  # 获取数字部分并转为浮点数
@@ -2738,7 +2738,7 @@ class CryptoTrader:
             yes_match = re.search(r'\b(Yes)\b', text)  # 匹配单词 Yes
             amount_match = re.search(r'\$(\d+\.?\d*)', text)  # 匹配 $数字 格式
             
-            if trade_type == "Sold" and yes_match == "Yes" and amount_match:
+            if trade_type.group(1) == "Sold" and yes_match.group(1) == "Yes":
                 self.trade_type = trade_type.group(1)  # 获取 "Sold"
                 self.buy_yes_value = yes_match.group(1)  # 获取 "Yes"
                 self.buy_yes_amount = float(amount_match.group(1))  # 获取数字部分并转为浮点数
@@ -2766,13 +2766,13 @@ class CryptoTrader:
             )
             text = no_element.text
             # 记录原始文本用于调试
-            self.logger.debug(f"获取到的交易记录文本: {text}")
+            self.logger.debug(f"交易记录: {text}")
 
             trade_type = re.search(r'\b(Sold)\b', text)  # 匹配单词 Sold
             no_match = re.search(r'\b(No)\b', text)  # 匹配单词 No
             amount_match = re.search(r'\$(\d+\.?\d*)', text)  # 匹配 $数字 格式
 
-            if trade_type == "Sold" and no_match == "No" and amount_match:
+            if trade_type.group(1) == "Sold" and no_match.group(1) == "No":
                 self.trade_type = trade_type.group(1)  # 获取 "Sold"
                 self.buy_no_value = no_match.group(1)  # 获取 "No"
                 self.buy_no_amount = float(amount_match.group(1))  # 获取数字部分并转为浮点数
