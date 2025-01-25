@@ -845,7 +845,7 @@ class CryptoTrader:
         self.trade_count = 0
             
         # 启动浏览器作线程
-        threading.Thread(target=self._start_browser_monitoring, args=(self.current_url,), daemon=True).start()
+        threading.Thread(target=self._start_browser_monitoring, args=(self.target_url,), daemon=True).start()
         
         # 启用更金额按钮
         self.update_amount_button['state'] = 'normal'
