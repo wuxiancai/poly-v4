@@ -353,9 +353,9 @@ class CryptoTrader:
         # 次数按钮
         self.trade_buttons = {}  # 保存按钮引用
         
-        # 6按钮
-        self.trade_buttons["6"] = ttk.Button(buttons_frame, text="6", width=3, style='Blue.TButton')
-        self.trade_buttons["6"].grid(row=1, column=5, padx=2, pady=3)
+        # 4按钮
+        self.trade_buttons["4"] = ttk.Button(buttons_frame, text="4", width=3, style='Blue.TButton')
+        self.trade_buttons["4"].grid(row=1, column=5, padx=2, pady=3)
 
         # 添加程序重启按钮
         self.restart_button = ttk.Button(buttons_frame, text="重启程序", 
