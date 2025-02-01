@@ -2190,7 +2190,7 @@ class CryptoTrader:
                             self.logger.warning("交易失败,等待2秒后重试")
                             time.sleep(2)  # 添加延时避免过于频繁的重试
                 # 检查No3价格匹配
-                elif 0 <= (no_price - no3_target ) <= 0.04 and no3_target > 0:
+                elif 0 <= (no_price - no3_target ) <= 0.1 and no3_target > 0:
                     while True:
                         self.logger.info("No 3价格匹配,执行自动交易")
                         # 执行交易操作
