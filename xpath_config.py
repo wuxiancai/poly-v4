@@ -3,7 +3,6 @@ XPATH配置文件
 用于集中管理所有XPATH路径
 修改XPATH时只需要在此文件中更新对应的值
 """
-
 class XPathConfig:
     # 登录相关
     LOGIN_BUTTON = '//*[@id="__pm_viewport"]/nav[1]/div[1]/div[3]/div/nav/div/ul/div[1]/div/button'
@@ -48,11 +47,11 @@ class XPathConfig:
     # 价格监控相关
     PRICE_BUTTON = "//button[contains(@class, '{}')]"  # 将通过format填充yes/no
 
-    # 买入yes/no时通过判断yes/no的值来判断是否买入成功
-    POSITION_YES_VALUE = '//*[@id="event-detail-container"]/div/div[2]/div/div[2]/div/div[2]/table/tbody/tr[1]/td[4]/span[2]'
-    POSITION_NO_VALUE = '//*[@id="event-detail-container"]/div/div[2]/div/div[2]/div/div[2]/table/tbody/tr[2]/td[4]/span[2]'
+    # 买入yes/no时通过判断yes/no的值来判断是否买入成功,需要修改。
+    POSITION_YES_VALUE = '//*[@id="event-detail-container"]/div/div[3]/div/div[2]/div/div[2]/table/tbody/tr[1]/td[4]/span[2]'
+    POSITION_NO_VALUE = '//*[@id="event-detail-container"]/div/div[3]/div/div[2]/div/div[2]/table/tbody/tr[2]/td[4]/span[2]'
 
-    # history相关
-    HISTORY = '//*[@id="event-detail-container"]/div/div[2]/div/div[5]/div/div[2]/div/p'
-    HISTORY_YES_VALUE = '//*[@id="event-detail-container"]/div/div[2]/div/div[5]/div/div[2]/div/p'
-    HISTORY_NO_VALUE = '//*[@id="event-detail-container"]/div/div[2]/div/div[5]/div/div[2]/div/p'
+    # history相关，需要修改
+    HISTORY = '//*[@id="event-detail-container"]/div/div[3]/div/div[5]/div/div[2]/div/p'
+    HISTORY_YES_VALUE = '//*[@id="event-detail-container"]/div/div[3]/div/div[5]/div/div[2]/div/p'
+    HISTORY_NO_VALUE = '//*[@id="event-detail-container"]/div/div[3]/div/div[5]/div/div[2]/div/p'
