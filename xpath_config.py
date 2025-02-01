@@ -3,6 +3,7 @@ XPATH配置文件
 用于集中管理所有XPATH路径
 修改XPATH时只需要在此文件中更新对应的值
 """
+
 class XPathConfig:
     # 登录相关
     LOGIN_BUTTON = '//*[@id="__pm_viewport"]/nav[1]/div[1]/div[3]/div/nav/div/ul/div[1]/div/button'
