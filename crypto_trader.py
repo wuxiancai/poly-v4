@@ -2213,8 +2213,8 @@ class CryptoTrader:
                             # 设置Yes4价格为0.54
                             yes4_price_entry = self.yes_frame.grid_slaves(row=8, column=1)[0]
                             yes4_price_entry.delete(0, tk.END)
-                            yes4_price_entry.insert(0, str(self.default_target_price))
-                            yes4_price_entry.configure(fg='red')  # 添加红色设置
+                            yes4_price_entry.insert(0, "0.00")
+                            # yes4_price_entry.configure(fg='red')  # 添加红色设置
 
                             """当买了 4次后预防第 5 次反水，所以价格到了 50 时就平仓，然后再自动开"""
                             # 设置 Yes6和No6价格为0.85
