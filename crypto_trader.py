@@ -319,7 +319,7 @@ class CryptoTrader:
         ttk.Label(first_frame, text="反水一(%):").pack(side=tk.LEFT)
         self.first_rebound_entry = ttk.Entry(first_frame, width=4)
         self.first_rebound_entry.pack(side=tk.LEFT)
-        self.first_rebound_entry.insert(0, "250")
+        self.first_rebound_entry.insert(0, "255")
         
         # 反水N次设置
         n_frame = ttk.Frame(amount_frame)
