@@ -1765,6 +1765,7 @@ class CryptoTrader:
                             no6_price_entry.delete(0, tk.END)
                             no6_price_entry.insert(0, "0.85")
                             no6_price_entry.configure(fg='red')  # 添加红色设置
+                            self.logger.info("First_trade执行成功")
                             break
                         else:
                             self.logger.warning("交易失败,等待2秒后重试")
@@ -1815,6 +1816,7 @@ class CryptoTrader:
                             no6_price_entry.delete(0, tk.END)
                             no6_price_entry.insert(0, "0.85")
                             no6_price_entry.configure(fg='red')  # 添加红色设置
+                            self.logger.info("First_trade执行成功")
                             break
                         else:
                             self.logger.warning("交易失败,等待2秒后重试")
@@ -1905,6 +1907,7 @@ class CryptoTrader:
                                 amount=float(self.buy_yes_amount),
                                 trade_count=self.trade_count
                             )
+                            self.logger.info("Second_trade执行成功")
                             break
                         else:
                             self.logger.warning("交易失败,等待2秒后重试")
@@ -1947,6 +1950,7 @@ class CryptoTrader:
                                 amount=float(self.buy_no_amount),
                                 trade_count=self.trade_count
                             )
+                            self.logger.info("Second_trade执行成功")
                             break
                         else:
                             self.logger.warning("交易失败,等待2秒后重试")
@@ -2037,6 +2041,7 @@ class CryptoTrader:
                                 amount=float(self.buy_yes_amount),
                                 trade_count=self.trade_count
                             )   
+                            self.logger.info("Third_trade执行成功")
                             break
                         else:
                             self.logger.warning("交易失败,等待2秒后重试")
@@ -2078,6 +2083,7 @@ class CryptoTrader:
                                 amount=float(self.buy_no_amount),
                                 trade_count=self.trade_count
                             )
+                            self.logger.info("Third_trade执行成功")
                             break
                         else:
                             self.logger.warning("交易失败,等待2秒后重试")
@@ -2178,6 +2184,7 @@ class CryptoTrader:
                                 amount=float(self.buy_yes_amount),
                                 trade_count=self.trade_count
                             )
+                            self.logger.info("Forth_trade执行成功")
                             break
                         else:
                             self.logger.warning("交易失败,等待2秒后重试")
@@ -2228,6 +2235,7 @@ class CryptoTrader:
                                 amount=float(self.buy_no_amount),
                                 trade_count=self.trade_count
                             )
+                            self.logger.info("Forth_trade执行成功")
                             break
                         else:
                             self.logger.warning("交易失败,等待2秒后重试")
@@ -2947,7 +2955,7 @@ class CryptoTrader:
             self.root.quit()
             
             # 使用subprocess启动新进程,添加--restart参数
-            subprocess.Popen(['python3', 'crypto_trader.py', '--restart'])
+            subprocess.Popen(['bash', 'run_trader.sh', '--restart'])
             
             # 退出当前程序
             sys.exit(0)   
